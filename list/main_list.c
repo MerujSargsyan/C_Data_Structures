@@ -12,6 +12,10 @@ int main(void) {
     list_remove_element(list, 75);
     list_insert(list, 69, 0);
     list_insert(list, 25, 10);
+    list_add(list, 10);
+    list_add(list, 26);
+    list_add(list, 10);
     list_print(list);
+    free_list(list);
     return 0;
 }

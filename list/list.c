@@ -30,12 +30,13 @@ void list_add(List* list, int element) {
 }
 
 int list_get(List* list, unsigned int idx) {
-    if((unsigned int)idx >= list->size) printf("Index out of bounds for get, junk value placed\n");
+    if((unsigned int)idx >= list->size) printf("Index out of bounds for get, junk value returned\n");
     return list->array[idx];
 }
 
 void list_remove_index(List* list, unsigned int index) {
     int* newArr = malloc(sizeof(int) * (list->capacity));
+    if(index >= list->size) return;
     for(unsigned int i = 0; i < index; i++) {
         newArr[i] = list->array[i]; 
     }
