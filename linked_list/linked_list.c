@@ -44,6 +44,45 @@ int llist_get(Linked_list* list, unsigned int idx) {
     return curr->val;
 }
 
+void llist_remove_index(Linked_list* list, unsigned int idx) {
+    if(idx >= list->size) {
+        printf("Index out of bounds for llist_remove"); 
+        return;
+    }
+
+    Node* prev = NULL;
+    Node* curr = list->head;
+
+    for(unsigned int i = 0; i < idx; i++) {
+        prev = curr;
+        curr = curr->next;
+    }
+
+    if(prev == NULL) {
+        list->head = list->head->next;
+        list->size--;
+        return;
+    }
+    prev->next = curr->next;
+    list->size--;
+}
+
+void llist_remove_element(Linked_list* list, int element) {
+    Node* curr = list->head;
+
+    int i = 0;
+    while(curr != NULL) {
+        if(curr->val == element) {
+            llist_remove_index(list, i);
+            return;
+        }
+        i++;
+        curr = curr->next;
+    }
+    printf("Element missing from llist\n");
+}
+
+
 void llist_print(Linked_list* list) {
     Node* curr = list->head;
     printf("Linked List contents: ");
