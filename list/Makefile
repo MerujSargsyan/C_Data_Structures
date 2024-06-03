@@ -1,9 +1,13 @@
 CFLAGS = -Wall -Wextra -g -std=gnu99
+BINDIR = ../bin
 
-default: main
+default: $(BINDIR)/main_list
 
-list.o: list.c
+%.o: %.c
 	gcc $(CFLAGS) -c -o $@ $<
 
-main: main.c list.o
-	gcc $(CFLAGS) -o $@ main.c list.o 
+$(BINDIR)/main_list: main_list.o list.o | $(BINDIR)
+	gcc $(CFLAGS) -o $@ main_list.c list.o 
+
+run: $(BINDIR)/main_list
+	$(BINDIR)/main_list
