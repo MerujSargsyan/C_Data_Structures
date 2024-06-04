@@ -82,6 +82,35 @@ void llist_remove_element(Linked_list* list, int element) {
     printf("Element missing from llist\n");
 }
 
+// error here
+void llist_insert(Linked_list* list, unsigned int idx, int element) {
+    if(idx > list->size) {
+       printf("Index out of bounds for llist_insert"); 
+       return;
+    }
+
+    Node* add = make_node(element);
+
+    if(list->size == 0) {
+        llist_add(list, element);
+        return;
+    }
+    Node* prev = NULL;
+    Node* curr = list->head;
+    for(unsigned int i = 0; i < idx; i++) {
+        prev = curr;
+        curr = curr->next;
+    }
+
+    if(prev == NULL) {
+        add->next = list->head;
+        list->head = add;
+        return;
+    }
+
+    prev->next = add; 
+    add->next = curr;
+}
 
 void llist_print(Linked_list* list) {
     Node* curr = list->head;
@@ -92,3 +121,18 @@ void llist_print(Linked_list* list) {
     }
     printf("NULL\n");
 }
+
+void free_Node(Node* node) {
+    if(node == NULL) return;
+    free_Node(node->next);
+    free(node);
+}
+
+void free_llist(Linked_list* list) {
+    free_Node(list->head);
+    free(list);
+}
+
+
+
+

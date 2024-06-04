@@ -11,3 +11,6 @@ $(BINDIR)/main_linked_list: main_linked_list.o linked_list.o | $(BINDIR)
 
 run: $(BINDIR)/main_linked_list
 	$(BINDIR)/main_linked_list
+
+valgrind: $(BINDIR)/main_linked_list
+	valgrind $(BINDIR)/main_linked_list
