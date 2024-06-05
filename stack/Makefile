@@ -13,3 +13,6 @@ main_stack: main_stack.c
 
 run: $(BINDIR)/main_stack
 	$(BINDIR)/main_stack
+
+valgrind: $(BINDIR)/main_stack
+	valgrind $(BINDIR)/main_stack

@@ -3,21 +3,20 @@
 
 #include "list.h"
 
-// TODO
 void extend_capacity(List* list) {
     if(list->size <=  list->capacity/2) return;
-    int* newArr = malloc(sizeof(int) * list->capacity);
+    list->capacity *= 2;
+    int* newArr = calloc(list->capacity, sizeof(int));
     for(unsigned int i = 0; i < list->size; i++) {
         newArr[i] = list->array[i];
     }
     free(list->array);
     list->array = newArr;
-    list->capacity *= 2;
 }
 
 List* list_init(unsigned int capacity) {
     List* list = malloc(sizeof(List));
-    list->array = malloc(sizeof(int) * capacity);
+    list->array = calloc(capacity, sizeof(int));
     list->size = 0;
     list->capacity = capacity;
     return list;
@@ -35,12 +34,13 @@ int list_get(List* list, unsigned int idx) {
 }
 
 void list_remove_index(List* list, unsigned int index) {
-    int* newArr = malloc(sizeof(int) * (list->capacity));
+    int* newArr = calloc(list->capacity, sizeof(int));
     if(index >= list->size) return;
     for(unsigned int i = 0; i < index; i++) {
         newArr[i] = list->array[i]; 
     }
-    for(unsigned int i = index; i < list->size; i++) {
+
+    for(unsigned int i = index; i < list->size - 1; i++) {
         newArr[i] = list->array[i+1];
     }
 
@@ -61,11 +61,11 @@ void list_remove_element(List* list, int element) {
 
 void list_insert(List* list, int element, unsigned int idx) {
     if(idx > list->size) {
-        printf("Index out of bounds for insert\n");
+        printf("Index out of bounds for list insert\n");
         return;
     }
     extend_capacity(list);
-    int* newArr = malloc(sizeof(int) * (list->capacity));
+    int* newArr = calloc(list->capacity, sizeof(int));
     for(unsigned int i = 0; i < idx; i++) {
         newArr[i] = list->array[i];
     }
@@ -77,6 +77,14 @@ void list_insert(List* list, int element, unsigned int idx) {
     free(list->array);
     list->array = newArr;
     list->size++;
+}
+
+void list_set(List* list, int element, unsigned int idx) {
+    if(idx > list->size) {
+        printf("Index out of bounds for list set\n");
+        return;
+    }
+    list->array[idx] = element;
 }
 
 void list_print(List* list) {

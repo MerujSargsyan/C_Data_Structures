@@ -13,6 +13,7 @@ int list_get(List* list, unsigned int idx);
 void list_remove_index(List* list, unsigned int idx);
 void list_remove_element(List* list, int element);
 void list_insert(List* list, int element, unsigned int idx);
+void list_set(List* list, int element, unsigned int idx);
 void list_print(List* list);
 void free_list(List* list);
 

@@ -13,3 +13,6 @@ main_queue: main_queue.c
 
 run: $(BINDIR)/main_queue
 	$(BINDIR)/main_queue
+
+valgrind: $(BINDIR)/main_queue
+	valgrind $(BINDIR)/main_queue
