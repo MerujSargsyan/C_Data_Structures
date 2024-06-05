@@ -11,7 +11,7 @@ Node* make_node(int val) {
 }
 
 Linked_list* llist_init() {
-    Linked_list* llist = malloc(sizeof(llist));
+    Linked_list* llist = malloc(sizeof(Linked_list));
     llist->head = NULL;
     llist->size = 0;
     return llist;
@@ -59,11 +59,13 @@ void llist_remove_index(Linked_list* list, unsigned int idx) {
     }
 
     if(prev == NULL) {
-        list->head = list->head->next;
+        list->head = curr->next;
         list->size--;
+        free(curr);
         return;
     }
     prev->next = curr->next;
+    free(curr);
     list->size--;
 }
 
@@ -126,11 +128,13 @@ void free_Node(Node* node) {
     if(node == NULL) return;
     free_Node(node->next);
     free(node);
+    node = NULL;
 }
 
 void free_llist(Linked_list* list) {
     free_Node(list->head);
     free(list);
+    list = NULL;
 }
 
 
