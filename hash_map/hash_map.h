@@ -8,11 +8,9 @@ typedef struct {
     List* list;
 } Hash_map;
 
-//TODO
 Hash_map* hash_map_init(unsigned int capacity);
-
-// false if key already exists
-bool hash_map_put(Hash_map* ht, char* key, int val);
+// TODO
+void hash_map_put(Hash_map* ht, char* key, int val);
 
 int hash_map_get(Hash_map* ht, char* key);
 void hash_map_set(Hash_map* ht, char* key, int val);
