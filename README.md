@@ -1,1 +1,2 @@
-Reacreating data structures in C (from scratch)
+### Reacreating data structures in C (from scratch)
+## (Also working on algorithms)
