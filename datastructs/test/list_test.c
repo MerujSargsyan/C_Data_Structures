@@ -3,6 +3,7 @@
 
 int main(void) {
     List* list = list_init(5);
-    printf("size: %d\n", list->capacity);
+    list_add(list, 5);
+    list_print(list);
     return 0;
 }

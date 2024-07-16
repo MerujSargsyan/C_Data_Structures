@@ -1,8 +1,8 @@
 #ifndef LIST_H
 #define LIST_H
-
 #include <list.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef struct List {
     int* values;
@@ -11,6 +11,7 @@ typedef struct List {
 } List;
 
 List* list_init(unsigned int capacity);
+
 // add element to end of list
 void list_add(List* list, int element);
 
