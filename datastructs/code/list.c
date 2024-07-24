@@ -105,7 +105,7 @@ void list_set(List* list, int element, unsigned int idx) {
 }
 
 void list_print(List* list) {
-    printf("List conents: ");
+    printf("List contents: ");
     for(unsigned int i = 0; i < list->size; i++) {
         printf("%d ", list->values[i]);
     }
